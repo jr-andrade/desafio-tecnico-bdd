@@ -4,6 +4,7 @@ using DesafioLocalizaBdd.Domain.Entidades;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using System;
 using TechTalk.SpecFlow;
 using Xunit;
 
@@ -18,7 +19,6 @@ namespace DesafioLocalizaBdd.Testes.Comportamento.Steps
         private string _login;
         private string _senha;
         private Usuario _usuario;
-        private readonly string _token = "abcdefg";
 
         [Given(@"que o usuário informou o login '(.*)' e a senha '(.*)'")]
         public void DadoQueOUsuarioInformouOLoginEASenha(string login, string senha)
@@ -32,10 +32,12 @@ namespace DesafioLocalizaBdd.Testes.Comportamento.Steps
         [Given(@"que os dados de entrada estão válidos e correspondem a um cliente cadastrado")]
         public void DadoQueOsDadosDeEntradaEstaoValidosECorrespondemAUmClienteCadastrado()
         {
+            var cliente = new Cliente(new Guid(), _login, new DateTime(1989, 06, 22));
+            var token = "xyzToken";
+            cliente.Autenticar(token);
+
             _loginApplication.Setup(x => x.Autenticar(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(
-                    new Cliente(_login, _token)
-                );
+                .Returns(cliente);
         }
 
         [Then(@"o usuário será autenticado como um cliente")]
@@ -61,10 +63,12 @@ namespace DesafioLocalizaBdd.Testes.Comportamento.Steps
         [Given(@"que os dados de entrada estão válidos e correspondem a um operador do sistema")]
         public void DadoQueOsDadosDeEntradaEstaoValidosECorrespondemAUmOperadorDoSistema()
         {
+            var operador = new Operador(new Guid(), _login);
+            var token = "xyzToken";
+            operador.Autenticar(token);
+
             _loginApplication.Setup(x => x.Autenticar(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(
-                    new Operador(_login, _token)
-                );
+                .Returns(operador);
         }
 
         [Then(@"o usuário será autenticado como um operador do sistema")]
@@ -79,7 +83,7 @@ namespace DesafioLocalizaBdd.Testes.Comportamento.Steps
             //Usuário deverá possuir token de autenticação
             _usuario.Token.Should().NotBeNull();
 
-            //Usuário deverá ser um cliente
+            //Usuário deverá ser um operador
             Assert.True(_usuario is Operador);
             ((Operador)_usuario).Matricula.Should().NotBeNullOrEmpty();
         }

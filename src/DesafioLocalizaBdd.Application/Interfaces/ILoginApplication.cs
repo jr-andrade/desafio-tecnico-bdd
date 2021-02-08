@@ -8,7 +8,7 @@ namespace DesafioLocalizaBdd.Application.Interfaces
     public interface ILoginApplication
     {
         /// <summary>
-        /// Obtém um usuário
+        /// Autentica um usuário
         /// </summary>
         /// <param name="login"></param>
         /// <param name="senha"></param>

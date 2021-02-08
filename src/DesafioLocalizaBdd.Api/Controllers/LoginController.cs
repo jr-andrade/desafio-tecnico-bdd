@@ -30,6 +30,12 @@ namespace DesafioLocalizaBdd.Api.Controllers
         [HttpPost]
         public IActionResult Post(string login, string senha)
         {
+            if(string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(senha)) 
+            {
+                //TODO: Alterar para BadRequestObjectResult - contendo mensagem informando o erro
+                return new BadRequestResult();
+            }
+
             var usuario = _loginApplication.Autenticar(login, senha);
 
             return Ok(usuario);

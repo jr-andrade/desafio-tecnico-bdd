@@ -1,4 +1,6 @@
-﻿namespace DesafioLocalizaBdd.Domain.Entidades
+﻿using System;
+
+namespace DesafioLocalizaBdd.Domain.Entidades
 {
     /// <summary>
     /// Entidade de domínio que representa um Operador
@@ -9,9 +11,9 @@
         /// <summary>
         /// Construtor da Classe
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="matricula"></param>
-        /// <param name="token"></param>
-        public Operador(string matricula, string token) : base(token)
+        public Operador(Guid id, string matricula) : base(id)
         {
             Matricula = matricula;
         }
