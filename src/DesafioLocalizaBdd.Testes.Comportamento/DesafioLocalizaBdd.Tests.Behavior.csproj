@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\130364\.nuget\packages\specrun.runner\3.4.19\build\..\tools\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.0.0-alpha0002" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Moq" Version="4.16.0" />
+    <PackageReference Include="SpecFlow" Version="3.6.23" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.6.23" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.6.23" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    
+
+    
+
+    
+
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DesafioLocalizaBdd.Api\DesafioLocalizaBdd.Api.csproj" />
+    <ProjectReference Include="..\DesafioLocalizaBdd.Application\DesafioLocalizaBdd.Application.csproj" />
+    <ProjectReference Include="..\DesafioLocalizaBdd.Dominio\DesafioLocalizaBdd.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
