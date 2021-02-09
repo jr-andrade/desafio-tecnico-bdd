@@ -21,7 +21,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Application
             //Arrange
             //Criar usuário fictício
             var guid = new Guid();
-            var usuario = new Usuario(guid, "09784494604", "123456", "José Vicente", Perfil.Cliente);
+            var usuario = new Usuario(guid, "09784494604", "123456", "José Vicente", "Cliente");
 
             //Mock repositório usuário
             _usuarioRepositorioMock.Setup(x => x.Obter(It.IsAny<string>(), It.IsAny<string>()))
@@ -60,7 +60,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Application
             //Arrange
             //Criar usuário fictício
             var guid = new Guid();
-            var usuario = new Usuario(guid, "130364", "123456", "José Vicente", Perfil.Operador);
+            var usuario = new Usuario(guid, "130364", "123456", "José Vicente", "Operador");
 
             //Mock repositório usuário
             _usuarioRepositorioMock.Setup(x => x.Obter(It.IsAny<string>(), It.IsAny<string>()))

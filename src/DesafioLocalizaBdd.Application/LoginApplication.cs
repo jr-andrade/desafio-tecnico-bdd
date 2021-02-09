@@ -1,7 +1,6 @@
 ﻿using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
 using DesafioLocalizaBdd.Domain.Interfaces;
-using System;
 
 namespace DesafioLocalizaBdd.Application
 {
@@ -43,7 +42,7 @@ namespace DesafioLocalizaBdd.Application
 
             Usuario usuarioAutenticado;
 
-            if (usuario.Perfil == Perfil.Cliente)
+            if (usuario.Perfil == "Cliente")
             {
                 usuarioAutenticado = _clienteRepositorio.Obter(usuario.Id);
             }
@@ -55,7 +54,6 @@ namespace DesafioLocalizaBdd.Application
             var token = _tokenService.GerarToken(usuario);
 
             usuarioAutenticado.Autenticar(token);
-
 
             return usuarioAutenticado;
         }

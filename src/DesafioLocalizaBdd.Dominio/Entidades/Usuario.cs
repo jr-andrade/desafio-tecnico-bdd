@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace DesafioLocalizaBdd.Domain.Entidades
 {
@@ -7,6 +8,20 @@ namespace DesafioLocalizaBdd.Domain.Entidades
     /// </summary>
     public class Usuario
     {
+        /// <summary>
+        /// Construtor
+        /// </summary>
+        [JsonConstructor]
+        public Usuario(Guid id, string login, string senha, string nome, string perfil, string token)
+        {
+            Id = id;
+            Login = login;
+            Senha = senha;
+            Nome = nome;
+            Perfil = perfil;
+            Token = token;
+        }
+
         /// <summary>
         /// Construtor protegido que recebe Id
         /// </summary>
@@ -23,7 +38,7 @@ namespace DesafioLocalizaBdd.Domain.Entidades
         /// <param name="senha"></param>
         /// <param name="nome"></param>
         /// <param name="perfil"></param>
-        public Usuario(Guid id, string login, string senha, string nome, Perfil perfil)
+        public Usuario(Guid id, string login, string senha, string nome, string perfil)
         {
             Id = id;
             Login = login;
@@ -60,7 +75,7 @@ namespace DesafioLocalizaBdd.Domain.Entidades
         /// <summary>
         /// Perfil
         /// </summary>
-        public Perfil Perfil { get; private set; }
+        public string Perfil { get; private set; }
 
         /// <summary>
         /// Autentica o usuário
@@ -70,14 +85,5 @@ namespace DesafioLocalizaBdd.Domain.Entidades
         {
             Token = token;
         }
-    }
-
-    /// <summary>
-    /// Enumerador de perfis
-    /// </summary>
-    public enum Perfil
-    {
-        Cliente = 1,
-        Operador = 2
     }
 }
