@@ -36,10 +36,9 @@ namespace DesafioLocalizaBdd.Application
         {
             var usuario = _usuarioRepositorio.Obter(login, senha);
 
-            if(usuario == null)
+            if (usuario == null)
             {
-                //TODO: Alterar para NotFoundException
-                throw new Exception("login ou senha inválidos");
+                return null;
             }
 
             Usuario usuarioAutenticado;
@@ -56,6 +55,7 @@ namespace DesafioLocalizaBdd.Application
             var token = _tokenService.GerarToken(usuario);
 
             usuarioAutenticado.Autenticar(token);
+
 
             return usuarioAutenticado;
         }

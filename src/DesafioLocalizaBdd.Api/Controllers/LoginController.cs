@@ -32,11 +32,21 @@ namespace DesafioLocalizaBdd.Api.Controllers
         {
             if(string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(senha)) 
             {
-                //TODO: Alterar para BadRequestObjectResult - contendo mensagem informando o erro
-                return new BadRequestResult();
+                return new BadRequestObjectResult(new 
+                {
+                    message = "Informe o login e a senha!"
+                });
             }
 
             var usuario = _loginApplication.Autenticar(login, senha);
+
+            if (usuario == null) 
+            {
+                return new NotFoundObjectResult(new 
+                { 
+                    message = "Login e/ou senha inválidos!" 
+                });
+            }
 
             return Ok(usuario);
         }

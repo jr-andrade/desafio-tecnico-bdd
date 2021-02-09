@@ -11,39 +11,59 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controller
 {
     public class LoginControllerTest
     {
+        private readonly Mock<ILoginApplication> applicationMock = new Mock<ILoginApplication>();
+
         [Fact]
         public void Login_Sucesso()
         {
+            //Arrange
             var cliente = new Cliente(new Guid(), "09784494604", new DateTime(1989, 06, 22));
             var token = "xyzToken";
             cliente.Autenticar(token);
 
-            Mock<ILoginApplication> application = new Mock<ILoginApplication>();
-
-            application.Setup(x => x.Autenticar(It.IsAny<string>(), It.IsAny<string>()))
+            applicationMock.Setup(x => x.Autenticar(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(cliente);
 
-            var controller = new LoginController(application.Object);
+            var controller = new LoginController(applicationMock.Object);
 
+            //Act
             var resultadoLogin = controller.Post("09784494604", "123456");
-
             var usuario = GetOkObject<Usuario>(resultadoLogin);
 
-            //Usuário deverá possuir token de autenticação
+            //Assert
             usuario.Token.Should().NotBeNull();
+        }
 
+        [Theory]
+        [InlineData("","")]
+        [InlineData("130364", "")]
+        [InlineData("", "123456")]
+        public void Login_BadRequest(string login, string senha)
+        {
+            //Arrange
+            var controller = new LoginController(applicationMock.Object);
+
+            //Act
+            var resultado = controller.Post(login, senha);
+
+            //Assert
+            resultado.Should().BeOfType(typeof(BadRequestObjectResult));
         }
 
         [Fact]
-        public void Login_BadRequest()
+        public void Login_CredenciaisInvalidas()
         {
-            Mock<ILoginApplication> application = new Mock<ILoginApplication>();
-            var controller = new LoginController(application.Object);
+            //Arrange
+            applicationMock.Setup(x => x.Autenticar(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((Usuario)null);
 
-            var resultado = controller.Post("", "");
+            var controller = new LoginController(applicationMock.Object);
 
-            resultado.Should().BeOfType(typeof(BadRequestResult));
+            //Act
+            var resultado = controller.Post("09784494604", "987654");
 
+            //Assert
+            resultado.Should().BeOfType(typeof(NotFoundObjectResult));
         }
 
         protected T GetOkObject<T>(IActionResult result)
