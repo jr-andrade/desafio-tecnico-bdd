@@ -8,6 +8,9 @@ using System.Text;
 
 namespace DesafioLocalizaBdd.Domain.Services
 {
+
+    //TODO: Mover para camada Application
+
     /// <summary>
     /// Serviço para geração do token de autenticação
     /// </summary>

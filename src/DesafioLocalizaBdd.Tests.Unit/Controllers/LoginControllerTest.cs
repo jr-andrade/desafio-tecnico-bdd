@@ -9,7 +9,7 @@ using Xunit;
 
 namespace DesafioLocalizaBdd.Tests.Unit.Controller
 {
-    public class LoginControllerTest
+    public class LoginControllerTest : BaseControllerTest
     {
         private readonly Mock<ILoginApplication> applicationMock = new Mock<ILoginApplication>();
 
@@ -64,12 +64,6 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controller
 
             //Assert
             resultado.Should().BeOfType(typeof(NotFoundObjectResult));
-        }
-
-        protected T GetOkObject<T>(IActionResult result)
-        {
-            var okObjectResult = (OkObjectResult)result;
-            return (T)okObjectResult.Value;
         }
     }
 }
