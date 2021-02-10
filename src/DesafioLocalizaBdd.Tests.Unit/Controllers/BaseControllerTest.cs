@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DesafioLocalizaBdd.Tests.Unit.Controller
+namespace DesafioLocalizaBdd.Tests.Unit.Controllers
 {
     public class BaseControllerTest
     {

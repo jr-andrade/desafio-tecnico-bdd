@@ -16,6 +16,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.Entidades
                                                 "31080170",
                                                 "Rua Carmesia",
                                                 1381,
+                                                "Apto 302",
                                                 "Belo Horizonte",
                                                 "Minas Gerais"
                                         ),
@@ -39,6 +40,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.Entidades
                                                 "31080170",
                                                 "Rua Carmesia",
                                                 1381,
+                                                "Apto 302",
                                                 "Belo Horizonte",
                                                 "Minas Gerais"
                                         ),
@@ -73,6 +75,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.Entidades
                                                 "31080170",
                                                 "Rua Carmesia",
                                                 1381,
+                                                "Apto 302",
                                                 "Belo Horizonte",
                                                 "Minas Gerais"
                                         ),
@@ -93,6 +96,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.Entidades
                                                 "31080170",
                                                 "Rua Carmesia",
                                                 1381,
+                                                "Apto 302",
                                                 "Belo Horizonte",
                                                 "Minas Gerais"
                                         ),
@@ -113,6 +117,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.Entidades
                                                 "31080170",
                                                 "Rua Carmesia",
                                                 1381,
+                                                "Apto 302",
                                                 "Belo Horizonte",
                                                 "Minas Gerais"
                                         ),

@@ -7,7 +7,7 @@ using Moq;
 using System;
 using Xunit;
 
-namespace DesafioLocalizaBdd.Tests.Unit.Controller
+namespace DesafioLocalizaBdd.Tests.Unit.Controllers
 {
     public class LoginControllerTest : BaseControllerTest
     {

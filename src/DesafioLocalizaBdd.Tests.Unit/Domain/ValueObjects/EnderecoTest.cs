@@ -11,6 +11,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.ValueObjects
             var endereco = new Endereco("31080170",
                                         "Rua Carmesia",
                                         1381,
+                                        "Apto 302",
                                         "Belo Horizonte",
                                         "Minas Gerais"
                                         );
@@ -20,12 +21,13 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.ValueObjects
         }
 
         [Theory]
-        [InlineData("", "", "")]
-        public void Criar_Endereco_Invalido(string logradouro, string cidade, string estado)
+        [InlineData("", "", "", "")]
+        public void Criar_Endereco_Invalido(string logradouro, string complemento, string cidade, string estado)
         {
             var endereco = new Endereco("31080170",
                                         logradouro,
                                         0,
+                                        complemento,
                                         cidade,
                                         estado
                                         );
@@ -46,6 +48,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.ValueObjects
             var endereco = new Endereco(cep,
                                         "Rua Carmesia",
                                         1381,
+                                        "Apto 302",
                                         "Belo Horizonte",
                                         "Minas Gerais"
                                         );
@@ -61,6 +64,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Domain.ValueObjects
             var endereco = new Endereco("31080170",
                                         "Rua Carmesia",
                                         0,
+                                        "Apto 302",
                                         "Belo Horizonte",
                                         "Minas Gerais"
                                         );

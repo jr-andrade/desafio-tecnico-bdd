@@ -16,12 +16,12 @@ namespace DesafioLocalizaBdd.Domain.ValueObjects.Cliente
         /// <param name="numero"></param>
         /// <param name="cidade"></param>
         /// <param name="estado"></param>
-        public Endereco(string cep, string logradouro, int numero, string cidade, string estado)
+        public Endereco(string cep, string logradouro, int numero, string complemento, string cidade, string estado)
         {
-
             Cep = cep;
             Logradouro = logradouro;
             Numero = numero;
+            Complemento = complemento;
             Cidade = cidade;
             Estado = estado;
 
@@ -36,6 +36,8 @@ namespace DesafioLocalizaBdd.Domain.ValueObjects.Cliente
 
                 .IsNotNull(Numero, nameof(Numero), "Número não pode ser nulo")
                 .IsGreaterThan(Numero, 0, nameof(Numero), "Número deve ser maior que 0")
+
+                .IsNotNullOrWhiteSpace(Complemento, nameof(Complemento), "Complemento não pode ser nulo ou branco")
 
                 .IsNotNullOrWhiteSpace(Cidade, nameof(Cidade), "Cidade não pode ser nulo ou branco")
 
@@ -57,6 +59,11 @@ namespace DesafioLocalizaBdd.Domain.ValueObjects.Cliente
         /// Numero
         /// </summary>
         public int Numero { get; private set; }
+
+        /// <summary>
+        /// Complemento
+        /// </summary>
+        public string Complemento { get; private set; }
 
         /// <summary>
         /// Cidade

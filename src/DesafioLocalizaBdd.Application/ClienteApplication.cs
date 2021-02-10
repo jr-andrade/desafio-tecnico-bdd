@@ -35,6 +35,7 @@ namespace DesafioLocalizaBdd.Application
                                             clienteModel.Endereco.Cep,
                                             clienteModel.Endereco.Logradouro,
                                             clienteModel.Endereco.Numero,
+                                            clienteModel.Endereco.Complemento,
                                             clienteModel.Endereco.Cidade,
                                             clienteModel.Endereco.Estado
                                         ), clienteModel.Senha);
