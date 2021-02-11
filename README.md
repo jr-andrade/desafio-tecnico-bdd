@@ -6,7 +6,7 @@ Para a identificação dos elementos do domínio, optei por utilizar o *BDD* com
   
 À medida que os testes de comportamento clareiam a visão do domínio, vão surgindo as interfaces do sistema, seja com serviços (login, cálculo de preço) seja com repositórios de dados. Para a implementação das classes concretas correspondentes às interfaces, utilizei a técnica de *TDD*, fazendo uso das bibliotecas *XUnit* (construção dos testes), *Moq* (configurar comportamentos esperados) e *FluentAssertions* (linguagem fluida).
 
-Além disso, criei também alguns testes de integração para validação da funcionalidade de Autenticação/Autorização. Com estes testes, consigo provar que os recursos protegidos só estão acessíveis mediante o envio de um token de autenticação. Para este desafio, implementei a *Bearer Authentication* (autenticação mediante token).
+Além disso, criei também alguns testes de integração para validação da funcionalidade de Autenticação/Autorização. Com estes testes, consigo provar que os recursos protegidos só estão acessíveis mediante o envio de um token de autenticação. Para este desafio, implementei a *Bearer Authentication* (autenticação mediante token JWT).
 
 Para fins de organização, cada tipo de testes (Comportamento, Unidade e Integração) estão uma camada separada.
 
