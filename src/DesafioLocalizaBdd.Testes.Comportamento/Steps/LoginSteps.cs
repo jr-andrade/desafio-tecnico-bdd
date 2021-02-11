@@ -1,6 +1,7 @@
 ﻿using DesafioLocalizaBdd.Api.Controllers;
 using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
+using DesafioLocalizaBdd.Domain.ValueObjects.Cliente;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -32,7 +33,16 @@ namespace DesafioLocalizaBdd.Testes.Comportamento.Steps
         [Given(@"que os dados de entrada estão válidos e correspondem a um cliente cadastrado")]
         public void DadoQueOsDadosDeEntradaEstaoValidosECorrespondemAUmClienteCadastrado()
         {
-            var cliente = new Cliente(new Guid(), _login, new DateTime(1989, 06, 22));
+            var cliente = new Cliente(new Guid(), "Cliente Teste", _login, new DateTime(1989, 06, 22), 
+                                    new Endereco(
+                                                "31080170",
+                                                "Rua Carmesia",
+                                                1381,
+                                                "Apto 302",
+                                                "Belo Horizonte",
+                                                "Minas Gerais"
+                                        ),
+                                        "12345678");
             var token = "xyzToken";
             cliente.Autenticar(token);
 
@@ -63,7 +73,7 @@ namespace DesafioLocalizaBdd.Testes.Comportamento.Steps
         [Given(@"que os dados de entrada estão válidos e correspondem a um operador do sistema")]
         public void DadoQueOsDadosDeEntradaEstaoValidosECorrespondemAUmOperadorDoSistema()
         {
-            var operador = new Operador(new Guid(), _login);
+            var operador = new Operador(new Guid(), "Operador Teste", _login, _senha);
             var token = "xyzToken";
             operador.Autenticar(token);
 

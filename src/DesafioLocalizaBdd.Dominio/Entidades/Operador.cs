@@ -9,17 +9,6 @@ namespace DesafioLocalizaBdd.Domain.Entidades
     /// </summary>
     public class Operador : Usuario
     {
-        //TODO: Verificar se esse construtor é nescessário
-        /// <summary>
-        /// Construtor da Classe
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="matricula"></param>
-        public Operador(Guid id, string matricula) : base(id)
-        {
-            Matricula = matricula;
-        }
-
         /// <summary>
         /// Construtor
         /// </summary>

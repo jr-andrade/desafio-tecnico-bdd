@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace DesafioLocalizaBdd.Domain.ValueObjects.Locacao
 {
-    //TODO: polimorfismo
     /// <summary>
     /// Calculo de despesas adicionais
     /// </summary>
@@ -77,7 +76,7 @@ namespace DesafioLocalizaBdd.Domain.ValueObjects.Locacao
         }
 
         /// <summary>
-        /// Calcula o valor total
+        /// Calcula o valor adicional
         /// </summary>
         private void CalcularValorAdicional()
         {

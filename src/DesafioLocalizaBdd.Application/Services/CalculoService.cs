@@ -1,6 +1,7 @@
 ﻿using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Application.Models;
 using DesafioLocalizaBdd.Domain.ValueObjects.Locacao;
+using Serilog;
 using System;
 
 namespace DesafioLocalizaBdd.Application.Services
@@ -23,8 +24,8 @@ namespace DesafioLocalizaBdd.Application.Services
 
             if (calculo.Invalid)
             {
-                //TODO: Criar exceção específica
-                throw new Exception();
+                Log.Error("Erro no cálculo da locação.");
+                throw new Exception("Erro no cálculo da locação.");
             }
             return calculo.ValorTotal;
         }
@@ -41,8 +42,8 @@ namespace DesafioLocalizaBdd.Application.Services
 
             if (calculo.Invalid)
             {
-                //TODO: Criar exceção específica
-                throw new Exception();
+                Log.Error("Erro no cálculo do custo adicional da locação.");
+                throw new Exception("Erro no cálculo do custo adicional da locação.");
             }
             return calculo.ValorAdicional;
         }

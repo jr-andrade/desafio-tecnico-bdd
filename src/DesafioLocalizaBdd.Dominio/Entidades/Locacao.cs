@@ -32,6 +32,22 @@ namespace DesafioLocalizaBdd.Domain.Entidades
                 .IsGreaterThan(Final, Inicio, nameof(Final), "Data final deve ser maior que data inicial")
             );
         }
+
+        /// <summary>
+        /// Construtor (Utilizado pelo repositório)
+        /// </summary>
+        /// <param name="IdLocacao"></param>
+        /// <param name="idVeiculo"></param>
+        /// <param name="idCliente"></param>
+        /// <param name="valor"></param>
+        /// <param name="inicio"></param>
+        /// <param name="final"></param>
+        public Locacao(Guid IdLocacao, Guid idVeiculo, Guid idCliente, decimal valor, DateTime inicio, DateTime final)
+            : this(idVeiculo, idCliente, valor, inicio, final)
+        {
+            Id = IdLocacao;
+        }
+
         /// <summary>
         /// Id do Veículo
         /// </summary>

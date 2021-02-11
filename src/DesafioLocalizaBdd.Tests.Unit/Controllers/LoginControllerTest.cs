@@ -1,6 +1,7 @@
 ﻿using DesafioLocalizaBdd.Api.Controllers;
 using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
+using DesafioLocalizaBdd.Domain.ValueObjects.Cliente;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -17,7 +18,16 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
         public void Login_Sucesso()
         {
             //Arrange
-            var cliente = new Cliente(new Guid(), "09784494604", new DateTime(1989, 06, 22));
+            var cliente = new Cliente(Guid.NewGuid(), "Cliente Teste", "09784494604", new DateTime(1989, 06, 22),
+                                    new Endereco(
+                                                "31080170",
+                                                "Rua Carmesia",
+                                                1381,
+                                                "Apto 302",
+                                                "Belo Horizonte",
+                                                "Minas Gerais"
+                                        ),
+                                        "12345678");
             var token = "xyzToken";
             cliente.Autenticar(token);
 

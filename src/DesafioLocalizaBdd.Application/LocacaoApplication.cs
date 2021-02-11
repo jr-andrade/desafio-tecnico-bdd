@@ -1,6 +1,7 @@
 ﻿using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
 using DesafioLocalizaBdd.Domain.Interfaces;
+using Serilog;
 using System;
 
 namespace DesafioLocalizaBdd.Application
@@ -37,10 +38,10 @@ namespace DesafioLocalizaBdd.Application
         {
             var veiculo = _veiculoRepositorio.Obter(veiculoId);
 
-            //TODO: ajustar aqui
             if (veiculo == null)
             {
-                throw new Exception();
+                Log.Error($"Erro no cálculo da locação. Veiculo {veiculoId} não encontrado.");
+                throw new Exception("Veículo não encontrado.");
             }
 
             return _calculoService.Calcular(veiculo.ValorHora, inicio, fim);

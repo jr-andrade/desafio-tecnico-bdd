@@ -9,7 +9,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
     /// <summary>
     /// Serviço responsável pelo cadastro de operadores
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("operadores")]
     [ApiController]
     public class OperadorController : ControllerBase
     {
@@ -33,6 +33,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <param name="id"></param>
         /// <returns>Objeto contendo o operador cadastrado</returns>
         [HttpGet]
+        [Route("{id}")]
         public IActionResult Get(Guid id)
         {
             var operador = _operadorRepositorio.Obter(id);
@@ -40,8 +41,6 @@ namespace DesafioLocalizaBdd.Api.Controllers
             if (operador == null)
                 return NotFound("Operador não encontrado");
 
-            //TODO: Mapear para model
-            //TODO: Não devolver a senha
             return Ok(operador);
         }
 

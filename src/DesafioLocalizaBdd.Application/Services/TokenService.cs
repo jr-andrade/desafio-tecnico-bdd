@@ -1,5 +1,6 @@
 ﻿using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
+using DesafioLocalizaBdd.Domain.Helper;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -8,17 +9,11 @@ using System.Text;
 
 namespace DesafioLocalizaBdd.Application.Services
 {
-    //TODO: Mover para camada Application
-
     /// <summary>
     /// Serviço para geração do token de autenticação
     /// </summary>
     public class TokenService : ITokenService
     {
-        private readonly string chavePrivada = "fedaf7d8863b48e197b9287d492b708e";
-
-        //TODO: Verificar concorrência. Estático? Lock? Verificar se usuário já possui token?
-
         /// <summary>
         /// Gera um token para o usuário
         /// </summary>
@@ -27,7 +22,7 @@ namespace DesafioLocalizaBdd.Application.Services
         public string GerarToken(Usuario usuario)
         {
             var handler = new JwtSecurityTokenHandler();
-            var chave = Encoding.ASCII.GetBytes(chavePrivada);
+            var chave = Encoding.ASCII.GetBytes(Constantes.CHAVE_TOKEN_AUTENTICACAO);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

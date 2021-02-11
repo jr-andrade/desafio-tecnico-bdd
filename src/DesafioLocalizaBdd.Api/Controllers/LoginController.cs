@@ -30,6 +30,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <returns>Objeto contendo o usuário autenticado</returns>
         [HttpPost]
         [AllowAnonymous]
+        [Route("{login}/{senha}")]
         public IActionResult Post(string login, string senha)
         {
             if(string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(senha)) 
@@ -52,16 +53,5 @@ namespace DesafioLocalizaBdd.Api.Controllers
 
             return Ok(usuario);
         }
-
-        //TODO: Rotas para teste de autorização, remover!
-        [HttpGet]
-        [Route("cliente")]
-        [Authorize(Roles = "Cliente")]
-        public string Cliente() => "Cliente";
-
-        [HttpGet]
-        [Route("operador")]
-        [Authorize(Roles = "Operador")]
-        public string Operador() => "Operador";
     }
 }

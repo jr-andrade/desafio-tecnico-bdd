@@ -2,6 +2,7 @@ using DesafioLocalizaBdd.Application;
 using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
 using DesafioLocalizaBdd.Domain.Interfaces;
+using DesafioLocalizaBdd.Domain.ValueObjects.Cliente;
 using FluentAssertions;
 using Moq;
 using System;
@@ -29,7 +30,16 @@ namespace DesafioLocalizaBdd.Tests.Unit.Applications
                 .Returns(usuario);
 
             //Criar cliente fictício
-            var cliente = new Cliente(guid, "09784494604", new DateTime(1989, 06, 22));
+            var cliente = new Cliente(Guid.NewGuid(), "Cliente Teste", "09784494604", new DateTime(1989, 06, 22),
+                                    new Endereco(
+                                                "31080170",
+                                                "Rua Carmesia",
+                                                1381,
+                                                "Apto 302",
+                                                "Belo Horizonte",
+                                                "Minas Gerais"
+                                        ),
+                                        "12345678");
 
             //Mock repositório cliente
             _clienteRepositorioMock.Setup(x => x.Obter(It.IsAny<Guid>()))
@@ -60,7 +70,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Applications
         {
             //Arrange
             //Criar usuário fictício
-            var guid = new Guid();
+            var guid = Guid.NewGuid();
             var usuario = new Usuario(guid, "130364", "123456", "José Vicente", "Operador");
 
             //Mock repositório usuário
@@ -68,7 +78,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Applications
                 .Returns(usuario);
 
             //Criar operador fictício
-            var operador = new Operador(guid, "130364");
+            var operador = new Operador(guid, "Operador Teste", "130364", "12345678");
 
             //Mock repositório operador
             _operadorRepositorioMock.Setup(x => x.Obter(It.IsAny<Guid>()))

@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioLocalizaBdd.Tests.Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioLocalizaBdd.Tests.Integration", "DesafioLocalizaBdd.Tests.Integration\DesafioLocalizaBdd.Tests.Integration.csproj", "{7576E64B-6C60-47B1-A8D3-E230A02097F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioLocalizaBdd.Infrastructure", "DesafioLocalizaBdd.Infrastructure\DesafioLocalizaBdd.Infrastructure.csproj", "{C3DC904A-EF11-41C3-B281-EAC1434668FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioLocalizaBdd.CrossCuting", "DesafioLocalizaBdd.CrossCuting\DesafioLocalizaBdd.CrossCuting.csproj", "{79D2E70E-4046-4A17-9145-30256E0FCF5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{7576E64B-6C60-47B1-A8D3-E230A02097F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7576E64B-6C60-47B1-A8D3-E230A02097F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7576E64B-6C60-47B1-A8D3-E230A02097F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3DC904A-EF11-41C3-B281-EAC1434668FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DC904A-EF11-41C3-B281-EAC1434668FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DC904A-EF11-41C3-B281-EAC1434668FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3DC904A-EF11-41C3-B281-EAC1434668FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D2E70E-4046-4A17-9145-30256E0FCF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D2E70E-4046-4A17-9145-30256E0FCF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D2E70E-4046-4A17-9145-30256E0FCF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D2E70E-4046-4A17-9145-30256E0FCF5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

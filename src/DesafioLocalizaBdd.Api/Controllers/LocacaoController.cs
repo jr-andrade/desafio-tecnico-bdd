@@ -1,4 +1,5 @@
 ﻿using DesafioLocalizaBdd.Application.Interfaces;
+using DesafioLocalizaBdd.Domain.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -50,7 +51,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <returns>Locação agendada</returns>
         [HttpPost]
         [Route("agendar")]
-        [Authorize(Roles = "Cliente")]
+        [Authorize(Roles = Constantes.PERFIL_CLIENTE)]
         public IActionResult Post(Guid veiculoId, DateTime inicio, DateTime fim)
         {
             var clienteId = new Guid(User.Identity.Name);
@@ -62,8 +63,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <summary>
         /// Faz download de um modelo de contrato
         /// </summary>
-        /// <param name="arquivo"></param>
-        /// <returns></returns>
+        /// <returns>Stream para download</returns>
         [HttpGet]
         [Route("download")]
         public IActionResult Download()

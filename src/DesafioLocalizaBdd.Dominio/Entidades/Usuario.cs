@@ -1,15 +1,13 @@
-﻿using Flunt.Notifications;
-using Flunt.Validations;
+﻿using Flunt.Validations;
 using Newtonsoft.Json;
 using System;
 
 namespace DesafioLocalizaBdd.Domain.Entidades
 {
-    //TODO: Usuário deve herdar de Entity
     /// <summary>
     /// Entidade de domínio que representa um Usuário do sistema
     /// </summary>
-    public class Usuario : Notifiable
+    public class Usuario : Entity
     {
         /// <summary>
         /// Construtor para testes de integração
@@ -50,16 +48,7 @@ namespace DesafioLocalizaBdd.Domain.Entidades
                 .IsNotNullOrWhiteSpace(Perfil, nameof(Perfil), "Perfil não pode ser nulo ou branco")
             );
         }
-
-        /// <summary>
-        /// Construtor protegido que recebe Id
-        /// </summary>
-        /// <param name="id"></param>
-        protected Usuario(Guid id)
-        {
-            Id = id;
-        }
-
+                
         /// <summary>
         /// Construtor que recebe login, senha, nome e perfil
         /// </summary>
@@ -74,13 +63,8 @@ namespace DesafioLocalizaBdd.Domain.Entidades
             Senha = senha;
             Nome = nome;
             Perfil = perfil;
-        }
-       
-        /// <summary>
-        /// Id
-        /// </summary>
-        public Guid Id { get; protected set; }
-
+        }       
+        
         /// <summary>
         /// Login
         /// </summary>

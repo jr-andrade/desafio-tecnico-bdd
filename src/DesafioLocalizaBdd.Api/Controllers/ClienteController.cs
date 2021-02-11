@@ -9,7 +9,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
     /// <summary>
     /// Serviço responsável pelo cadastro de clientes
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("clientes")]
     [ApiController]
     public class ClienteController : ControllerBase
     {
@@ -33,6 +33,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <param name="id"></param>
         /// <returns>Objeto contendo o cliente cadastrado</returns>
         [HttpGet]
+        [Route("{id}")]
         public IActionResult Get(Guid id)
         {
             var cliente = _clienteRepositorio.Obter(id);
@@ -40,8 +41,6 @@ namespace DesafioLocalizaBdd.Api.Controllers
             if (cliente == null)
                 return NotFound("Cliente não encontrado");
 
-            //TODO: Mapear para model
-            //TODO: Não devolver a senha
             return Ok(cliente);
         }
 

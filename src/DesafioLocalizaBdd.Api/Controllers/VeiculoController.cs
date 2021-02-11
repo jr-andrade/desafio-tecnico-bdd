@@ -1,5 +1,6 @@
 ﻿using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Application.Models;
+using DesafioLocalizaBdd.Domain.Helper;
 using DesafioLocalizaBdd.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,9 @@ using System;
 
 namespace DesafioLocalizaBdd.Api.Controllers
 {
+    /// <summary>
+    /// Serviço de cadastro de veículos
+    /// </summary>
     [Route("veiculos")]
     [ApiController]
     public class VeiculoController : ControllerBase
@@ -32,6 +36,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <returns>Objeto contendo o veículo cadastrado</returns>
         [HttpGet]
         [AllowAnonymous]
+        [Route("{id}")]
         public IActionResult Get(Guid id)
         {
             var veiculo = _veiculoRepositorio.Obter(id);
@@ -39,7 +44,6 @@ namespace DesafioLocalizaBdd.Api.Controllers
             if (veiculo == null)
                 return NotFound("Veículo não encontrado");
 
-            //TODO: Mapear para model
             return Ok(veiculo);
         }
 
@@ -62,8 +66,8 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <param name="veiculoModel"></param>
         /// <returns>Objeto contendo o veículo cadastrado</returns>
         [HttpPost]
-        [Authorize(Roles = "Operador")]
-        public IActionResult Post(VeiculoModel veiculoModel)
+        [Authorize(Roles = Constantes.PERFIL_OPERADOR)]
+        public IActionResult Post([FromBody]VeiculoModel veiculoModel)
         {
             var resultado = _veiculoApplication.Cadastrar(veiculoModel);
 
