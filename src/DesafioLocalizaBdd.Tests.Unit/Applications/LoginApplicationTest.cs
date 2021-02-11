@@ -1,4 +1,5 @@
 using DesafioLocalizaBdd.Application;
+using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
 using DesafioLocalizaBdd.Domain.Interfaces;
 using FluentAssertions;

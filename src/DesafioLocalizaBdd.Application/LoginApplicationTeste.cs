@@ -1,6 +1,5 @@
 ﻿using DesafioLocalizaBdd.Application.Interfaces;
 using DesafioLocalizaBdd.Domain.Entidades;
-using DesafioLocalizaBdd.Domain.Interfaces;
 using System;
 
 namespace DesafioLocalizaBdd.Application
@@ -15,7 +14,12 @@ namespace DesafioLocalizaBdd.Application
         }
         public Usuario Autenticar(string login, string senha)
         {
-            var usuario = new Usuario(new Guid(), "09784494604", "1234", "José", "Cliente");
+            Usuario usuario;
+
+            if (login == "09784494604")
+                usuario = new Usuario(new Guid("67b7ebc4-fcf1-45fa-a35e-b0c68ec57b89"), "09784494604", senha, "José Cliente", "Cliente");
+
+            else usuario = new Usuario(new Guid("35c68591-0e87-467e-b71f-da8c3971110a"), "130364", senha, "José Operador", "Operador");
             
             var token = _tokenService.GerarToken(usuario);
 

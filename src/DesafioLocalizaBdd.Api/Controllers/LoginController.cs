@@ -7,7 +7,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
     /// <summary>
     /// Serviço de Login
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("login")]
     [ApiController]
     public class LoginController : ControllerBase
     {

@@ -8,11 +8,16 @@
         /// <summary>
         /// Perfil Cliente
         /// </summary>
-        public static string PERFIL_CLIENTE { get { return "cliente"; } }
-        
+        public const string PERFIL_CLIENTE = "cliente";
+
         /// <summary>
         /// Perfil Operador
         /// </summary>
-        public static string PERFIL_OPERADOR { get { return "operador"; } }
+        public const string PERFIL_OPERADOR = "operador";
+
+        /// <summary>
+        /// Porcentagem a adicionar para cada ocorrência na devolução
+        /// </summary>
+        public const decimal PORCENTAGEM_COBRANCA_ADICIONAL = (decimal)0.3;
     }
 }

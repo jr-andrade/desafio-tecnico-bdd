@@ -1,22 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DesafioLocalizaBdd.Application;
 using DesafioLocalizaBdd.Application.Interfaces;
-using DesafioLocalizaBdd.Domain.Interfaces;
-using DesafioLocalizaBdd.Domain.Services;
+using DesafioLocalizaBdd.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace DesafioLocalizaBdd.Api
 {
@@ -35,7 +27,9 @@ namespace DesafioLocalizaBdd.Api
 
             //Dependências
             services.AddTransient<ILoginApplication, LoginApplicationTeste>();
+            services.AddTransient<ILocacaoApplication, LocacaoApplicationTeste>();
             services.AddTransient<ITokenService, TokenService>();
+
 
             //TODO: centralizar chave
             var chave = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");

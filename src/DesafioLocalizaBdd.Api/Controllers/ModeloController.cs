@@ -1,4 +1,5 @@
 ﻿using DesafioLocalizaBdd.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesafioLocalizaBdd.Api.Controllers
@@ -27,6 +28,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <param name="codigo"></param>
         /// <returns>Objeto contendo o modelo cadastrado</returns>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get(string codigo)
         {
             var modelo = _modeloRepositorio.Obter(codigo);
@@ -42,6 +44,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// </summary>
         /// <returns>Lista dos modelos cadastrados</returns>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult List()
         {
             var modelos = _modeloRepositorio.Listar();
@@ -55,6 +58,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <param name="modelo"></param>
         /// <returns>Objeto contendo o modelo cadastrado</returns>
         [HttpPost]
+        [Authorize(Roles = "Operador")]
         public IActionResult Post(string modelo)
         {
             if (string.IsNullOrWhiteSpace(modelo))

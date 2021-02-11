@@ -1,14 +1,13 @@
-﻿using DesafioLocalizaBdd.Domain.Entidades;
-using DesafioLocalizaBdd.Domain.Interfaces;
+﻿using DesafioLocalizaBdd.Application.Interfaces;
+using DesafioLocalizaBdd.Domain.Entidades;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace DesafioLocalizaBdd.Domain.Services
+namespace DesafioLocalizaBdd.Application.Services
 {
-
     //TODO: Mover para camada Application
 
     /// <summary>
@@ -33,7 +32,7 @@ namespace DesafioLocalizaBdd.Domain.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.Nome),
+                    new Claim(ClaimTypes.Name, usuario.Id.ToString()),
                     new Claim(ClaimTypes.Role, usuario.Perfil.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(30),

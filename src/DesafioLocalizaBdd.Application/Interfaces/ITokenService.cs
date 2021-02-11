@@ -1,6 +1,6 @@
 ﻿using DesafioLocalizaBdd.Domain.Entidades;
 
-namespace DesafioLocalizaBdd.Domain.Interfaces
+namespace DesafioLocalizaBdd.Application.Interfaces
 {
     /// <summary>
     /// Interface para o Serviço de Token

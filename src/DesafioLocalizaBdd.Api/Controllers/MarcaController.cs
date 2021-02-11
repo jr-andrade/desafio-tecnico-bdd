@@ -1,4 +1,5 @@
 ﻿using DesafioLocalizaBdd.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesafioLocalizaBdd.Api.Controllers
@@ -27,6 +28,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <param name="codigo"></param>
         /// <returns>Objeto contendo a marca cadastrada</returns>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get(string codigo)
         {
             var marca = _marcaRepositorio.Obter(codigo);
@@ -42,6 +44,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// </summary>
         /// <returns>Lista das marcas cadastrados</returns>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult List()
         {
             var marcas = _marcaRepositorio.Listar();
@@ -55,6 +58,7 @@ namespace DesafioLocalizaBdd.Api.Controllers
         /// <param name="marca"></param>
         /// <returns>Objeto contendo a marca cadastrada</returns>
         [HttpPost]
+        [Authorize(Roles = "Operador")]
         public IActionResult Post(string marca)
         {
             if (string.IsNullOrWhiteSpace(marca))
