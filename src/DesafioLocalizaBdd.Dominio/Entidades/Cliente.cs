@@ -54,7 +54,27 @@ namespace DesafioLocalizaBdd.Domain.Entidades
             if (Endereco != null)
                 AddNotifications(Endereco);
         }
-        
+
+        /// <summary>
+        /// Construtor (Utilizado pelo repositório)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nome"></param>
+        /// <param name="cpf"></param>
+        /// <param name="aniversario"></param>
+        /// <param name="endereco"></param>
+        /// <param name="senha"></param>
+        public Cliente(Guid id, string nome, string cpf, DateTime aniversario, Endereco endereco, string senha) 
+            : this(nome, cpf, aniversario, endereco, senha)
+        {
+            Id = id;
+
+            AddNotifications(new Contract()
+                .Requires()
+                .IsNotNull(Id, nameof(Id), "Id não pode ser nulo")
+            );
+        }
+
         /// <summary>
         /// CPF
         /// </summary>

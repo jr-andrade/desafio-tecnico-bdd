@@ -26,25 +26,24 @@ namespace DesafioLocalizaBdd.Application
         /// <summary>
         /// Cadastra um cliente
         /// </summary>
-        /// <param name="clienteModel"></param>
+        /// <param name="model"></param>
         /// <returns>Objeto contendo o cliente cadastrado</returns>
-        public Cliente Cadastrar(ClienteModel clienteModel)
+        public Cliente Cadastrar(ClienteModel model)
         {
-            var cliente = new Cliente(clienteModel.Nome, clienteModel.Cpf, clienteModel.Aniversario,
+            var cliente = new Cliente(model.Nome, model.Cpf, model.Aniversario,
                                         new Domain.ValueObjects.Cliente.Endereco(
-                                            clienteModel.Endereco.Cep,
-                                            clienteModel.Endereco.Logradouro,
-                                            clienteModel.Endereco.Numero,
-                                            clienteModel.Endereco.Complemento,
-                                            clienteModel.Endereco.Cidade,
-                                            clienteModel.Endereco.Estado
-                                        ), clienteModel.Senha);
+                                            model.Endereco.Cep,
+                                            model.Endereco.Logradouro,
+                                            model.Endereco.Numero,
+                                            model.Endereco.Complemento,
+                                            model.Endereco.Cidade,
+                                            model.Endereco.Estado
+                                        ),
+                                        model.Senha);
 
             if (cliente.Valid)
             {
-                var id = _clienteRepository.Cadastrar(cliente);
-
-                cliente.AtualizarId(id);
+                cliente = _clienteRepository.Cadastrar(cliente);
 
                 _usuarioRepositorio.Cadastrar(cliente);
 

@@ -18,8 +18,8 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
         private readonly Mock<IOperadorRepositorio> _operadorRepositorioMock = new Mock<IOperadorRepositorio>();
         private OperadorController _operadorController;
 
-        private readonly Operador _operador = new Operador("Operador Teste", "130364", "12345678");
-        private readonly Operador _operador2 = new Operador("Operador Teste2", "130365", "32165498");
+        private readonly Operador _operador = new Operador(new Guid("6fcbab54-bb44-4cc4-8471-bc339ba5b097"), "Operador Teste", "130364", "12345678");
+        private readonly Operador _operador2 = new Operador(new Guid("3140bed0-44b9-446a-9e38-b616b5f3ff71"), "Operador Teste2", "130365", "32165498");
         private readonly List<Operador> _operadores;
 
         public OperadorControllerTest()
@@ -32,7 +32,6 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
         {
             //Arrange
             var guid = new Guid("6fcbab54-bb44-4cc4-8471-bc339ba5b097");
-            _operador.AtualizarId(guid);
             _operadorRepositorioMock.Setup(x => x.Obter(It.IsAny<Guid>())).Returns(_operador);
 
             _operadorController = new OperadorController(_operadorApplicationMock.Object, _operadorRepositorioMock.Object);
@@ -50,7 +49,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
         public void Obter_Operador_NaoEncontrado()
         {
             //Arrange
-            var guid = new Guid("3140bed0-44b9-446a-9e38-b616b5f3ff71");
+            var guid = new Guid("a61e52c5-7c25-4fa8-a8f3-8d793d319199");
 
             _operadorRepositorioMock.Setup(x => x.Obter(It.IsAny<Guid>())).Returns((Operador)null);
 
@@ -88,9 +87,6 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
                 Nome = "Operador Teste",
                 Matricula = "130364"
             };
-
-            Guid guid = new Guid("48c671bf-6ca1-4da0-8238-ca3f97050ec0");
-            _operador.AtualizarId(guid);
 
             _operadorApplicationMock.Setup(x => x.Cadastrar(It.IsAny<OperadorModel>()))
                 .Returns(_operador);

@@ -11,18 +11,21 @@ namespace DesafioLocalizaBdd.Tests.Unit.Applications
 {
     public class OperadorApplicationTest
     {
+        private readonly Mock<IOperadorRepositorio> _operadorRepositorioMock = new Mock<IOperadorRepositorio>();
+        private readonly Mock<IUsuarioRepositorio> _usuarioRepositorioMock = new Mock<IUsuarioRepositorio>();
+
         [Fact]
         public void Cadastrar_Operador_Sucesso()
         {
             //Arrange
             var guid = new Guid("e203f137-db86-44fa-b7c9-c331414611cd");
-            Mock<IOperadorRepositorio> operadorRepositorioMock = new Mock<IOperadorRepositorio>();
-            operadorRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Operador>())).Returns(guid);
+            var operador = new Operador(guid, "Operador Teste", "130364", "12345678");
 
-            Mock<IUsuarioRepositorio> usuarioRepositorioMock = new Mock<IUsuarioRepositorio>();
-            usuarioRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Usuario>())).Verifiable();
+            _operadorRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Operador>())).Returns(operador);
+            
+            _usuarioRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Usuario>())).Verifiable();
 
-            var application = new OperadorApplication(operadorRepositorioMock.Object, usuarioRepositorioMock.Object);
+            var application = new OperadorApplication(_operadorRepositorioMock.Object, _usuarioRepositorioMock.Object);
 
             var operadorModel = new OperadorModel()
             {
@@ -32,24 +35,18 @@ namespace DesafioLocalizaBdd.Tests.Unit.Applications
             };
 
             //Act
-            var operador = application.Cadastrar(operadorModel);
+            var operadorCadastrado = application.Cadastrar(operadorModel);
 
             //Assert
-            operador.Should().NotBeNull();
-            operador.Id.Should().Be(guid);
+            operadorCadastrado.Should().NotBeNull();
+            operadorCadastrado.Should().BeEquivalentTo(operador);
         }
 
         [Fact]
         public void Cadastrar_Operador_DadosInvalidos()
         {
             //Arrange
-            Mock<IOperadorRepositorio> operadorRepositorioMock = new Mock<IOperadorRepositorio>();
-            operadorRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Operador>())).Returns(new Guid("e203f137-db86-44fa-b7c9-c331414611cd"));
-
-            Mock<IUsuarioRepositorio> usuarioRepositorioMock = new Mock<IUsuarioRepositorio>();
-            usuarioRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Usuario>())).Verifiable();
-
-            var application = new OperadorApplication(operadorRepositorioMock.Object, usuarioRepositorioMock.Object);
+            var application = new OperadorApplication(_operadorRepositorioMock.Object, _usuarioRepositorioMock.Object);
 
             var operadorModel = new OperadorModel()
             {

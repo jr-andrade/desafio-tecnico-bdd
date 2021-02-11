@@ -27,17 +27,15 @@ namespace DesafioLocalizaBdd.Application
         /// <summary>
         /// Cadastra um operador
         /// </summary>
-        /// <param name="operadorModel"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public Operador Cadastrar(OperadorModel operadorModel)
+        public Operador Cadastrar(OperadorModel model)
         {
-            var operador = new Operador(operadorModel.Nome, operadorModel.Matricula, operadorModel.Senha);
+            var operador = new Operador(model.Nome, model.Matricula, model.Senha);
 
             if(operador.Valid)
             {
-                var id = _operadorRepositorio.Cadastrar(operador);
-
-                operador.AtualizarId(id);
+                operador = _operadorRepositorio.Cadastrar(operador);
 
                 _usuarioRepositorio.Cadastrar(operador);
                 

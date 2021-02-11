@@ -7,34 +7,49 @@ using Moq;
 using System;
 using Xunit;
 
-namespace DesafioLocalizaBdd.Tests.Unit.Application
+namespace DesafioLocalizaBdd.Tests.Unit.Applications
 {
     public class ClienteApplicationTest
     {
+        private readonly Mock<IClienteRepositorio> _clienteRepositorioMock = new Mock<IClienteRepositorio>();
+        private readonly Mock<IUsuarioRepositorio> _usuarioRepositorioMock = new Mock<IUsuarioRepositorio>();
+        private ClienteApplication _application;
+
         [Fact]
         public void CadastrarCliente_Sucesso()
         {
             //Arrange
             var guid = new Guid("3a7cff8b-f06c-4c34-8cf1-72b94e2b1df5");
-            Mock<IClienteRepositorio> clienteRepositorioMock = new Mock<IClienteRepositorio>();
-            clienteRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Cliente>())).Returns(guid);
+            var cliente = new Cliente(guid, "Cliente Teste", "09784494604",
+                                       new DateTime(1989, 06, 22),
+                                       new DesafioLocalizaBdd.Domain.ValueObjects.Cliente.Endereco(
+                                               "31080170",
+                                               "Rua Carmesia",
+                                               1381,
+                                               "Apto 302",
+                                               "Belo Horizonte",
+                                               "Minas Gerais"
+                                       ),
+                                       "12345678"
+                                      );
 
-            Mock<IUsuarioRepositorio> usuarioRepositorioMock = new Mock<IUsuarioRepositorio>();
-            usuarioRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Usuario>())).Verifiable();
+           
+            _clienteRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Cliente>())).Returns(cliente);
+            _usuarioRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Usuario>())).Verifiable();
 
-            ClienteApplication application = new ClienteApplication(clienteRepositorioMock.Object, usuarioRepositorioMock.Object);
+            _application = new ClienteApplication(_clienteRepositorioMock.Object, _usuarioRepositorioMock.Object);
             
             var clienteModel = new ClienteModel()
             {
                 Nome = "Cliente Teste",
-                Cpf = "01234567898",
-                Aniversario = new DateTime(1989, 01, 01),
+                Cpf = "09784494604",
+                Aniversario = new DateTime(1989, 06, 22),
                 Endereco = new Endereco()
                 {
                     Cep = "31080170",
-                    Logradouro = "Rua Direita",
-                    Numero = 20,
-                    Complemento = "Lado B",
+                    Logradouro = "Rua Carmesia",
+                    Numero = 1381,
+                    Complemento = "Apto 302",
                     Cidade = "Belo Horizonte",
                     Estado = "Minas Gerais"
                 },
@@ -42,25 +57,20 @@ namespace DesafioLocalizaBdd.Tests.Unit.Application
             };
 
             //Act
-            var cliente = application.Cadastrar(clienteModel);
+            var clienteCadastrado = _application.Cadastrar(clienteModel);
 
             //Assert
-            cliente.Should().NotBeNull();
-            cliente.Id.Should().Be(guid);
+            clienteCadastrado.Should().NotBeNull();
+            clienteCadastrado.Should().BeEquivalentTo(cliente);
         }
 
         [Fact]
         public void CadastrarCliente_DadosInvalidos()
         {
             //Arrange
-            var guid = new Guid("3a7cff8b-f06c-4c34-8cf1-72b94e2b1df5");
-            Mock<IClienteRepositorio> clienteRepositorioMock = new Mock<IClienteRepositorio>();
-            clienteRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Cliente>())).Returns(guid);
+            _usuarioRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Usuario>())).Verifiable();
 
-            Mock<IUsuarioRepositorio> usuarioRepositorioMock = new Mock<IUsuarioRepositorio>();
-            usuarioRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Usuario>())).Verifiable();
-
-            ClienteApplication application = new ClienteApplication(clienteRepositorioMock.Object, usuarioRepositorioMock.Object);
+            _application = new ClienteApplication(_clienteRepositorioMock.Object, _usuarioRepositorioMock.Object);
 
             var clienteModel = new ClienteModel()
             {
@@ -80,7 +90,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Application
             };
 
             //Act
-            var cliente = application.Cadastrar(clienteModel);
+            var cliente = _application.Cadastrar(clienteModel);
 
             //Assert
             cliente.Should().BeNull();

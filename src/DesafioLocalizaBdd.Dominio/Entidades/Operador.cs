@@ -40,6 +40,24 @@ namespace DesafioLocalizaBdd.Domain.Entidades
         }
 
         /// <summary>
+        /// Construtor (Utilizado pelo repositório)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nome"></param>
+        /// <param name="matricula"></param>
+        /// <param name="senha"></param>
+        public Operador(Guid id, string nome, string matricula, string senha)
+            :this(nome, matricula, senha)
+        {
+            Id = id;
+
+            AddNotifications(new Contract()
+                .Requires()
+                .IsNotNull(Id, nameof(Id), "Id não pode ser nulo")
+            );
+        }
+
+        /// <summary>
         /// Matricula
         /// </summary>
         public string Matricula { get; set; }

@@ -26,19 +26,7 @@ namespace DesafioLocalizaBdd.Domain.Interfaces
         /// Cadastra um operador
         /// </summary>
         /// <param name="operador"></param>
-        /// <returns>Id do operador cadastrado</returns>
-        public Guid Cadastrar(Operador operador);
-
-        /// <summary>
-        /// Atualiza um operador
-        /// </summary>
-        /// <param name="operador"></param>
-        public void Atualizar(Operador operador);
-
-        /// <summary>
-        /// Remove um operador
-        /// </summary>
-        /// <param name="operador"></param>
-        public void Remover(Operador operador);
+        /// <returns>Operador cadastrado</returns>
+        public Operador Cadastrar(Operador operador);
     }
 }

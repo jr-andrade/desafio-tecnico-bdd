@@ -4,15 +4,15 @@ using DesafioLocalizaBdd.Domain.Entidades;
 namespace DesafioLocalizaBdd.Application.Interfaces
 {
     /// <summary>
-    /// Interface para a aplicação de cadastro de clientes
+    /// Interface para a aplicação de veículos
     /// </summary>
-    public interface IClienteApplication
+    public interface IVeiculoApplication
     {
         /// <summary>
-        /// Realiza o cadastro do cliente
+        /// Cadastra um veículo
         /// </summary>
         /// <param name="model"></param>
-        /// <returns>Objeto contendo o cliente cadastrado</returns>
-        public Cliente Cadastrar(ClienteModel model);
+        /// <returns>Veículo cadastrado</returns>
+        public Veiculo Cadastrar(VeiculoModel model);
     }
 }

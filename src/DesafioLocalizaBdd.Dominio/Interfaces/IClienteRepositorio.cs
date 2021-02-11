@@ -12,9 +12,9 @@ namespace DesafioLocalizaBdd.Domain.Interfaces
         /// <summary>
         /// Obtém um cliente
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="id"></param>
         /// <returns>Objeto contendo o Cliente</returns>
-        public Cliente Obter(Guid Id);
+        public Cliente Obter(Guid id);
 
         /// <summary>
         /// Lista os clientes cadastrados
@@ -26,19 +26,8 @@ namespace DesafioLocalizaBdd.Domain.Interfaces
         /// Cadastra um cliente
         /// </summary>
         /// <param name="cliente"></param>
-        /// <returns>Id do cliente cadastrado</returns>
-        public Guid Cadastrar(Cliente cliente);
-
-        /// <summary>
-        /// Atualiza um cliente
-        /// </summary>
-        /// <param name="cliente"></param>
-        public void Atualizar(Cliente cliente);
-
-        /// <summary>
-        /// Remove um cliente
-        /// </summary>
-        /// <param name="cliente"></param>
-        public void Remover(Cliente cliente);
+        /// <returns>Cliente cadastrado</returns>
+        public Cliente Cadastrar(Cliente cliente);
+        
     }
 }

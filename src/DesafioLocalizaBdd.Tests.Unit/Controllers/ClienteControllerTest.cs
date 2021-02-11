@@ -18,7 +18,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
         private readonly Mock<IClienteRepositorio> _clienteRepositorioMock = new Mock<IClienteRepositorio>();
         private ClienteController _clienteController;
 
-        private readonly Cliente _cliente = new Cliente("Cliente Teste", "01234567898", new DateTime(1989, 01, 01),
+        private readonly Cliente _cliente = new Cliente(new Guid("d0feaa4e-f5aa-474a-9863-9d6b2964977e"), "Cliente Teste", "01234567898", new DateTime(1989, 01, 01),
                                     new DesafioLocalizaBdd.Domain.ValueObjects.Cliente.Endereco(
                                         "31080170",
                                         "Rua Direita",
@@ -28,7 +28,8 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
                                         "Minas Gerais"),
                                     "12345678"
                                   );
-        private readonly Cliente _cliente2 = new Cliente("Cliente Teste 2", "98765432123", new DateTime(1995, 01, 01),
+
+        private readonly Cliente _cliente2 = new Cliente(new Guid("a61e52c5-7c25-4fa8-a8f3-8d793d319199"), "Cliente Teste 2", "98765432123", new DateTime(1995, 01, 01),
                                         new DesafioLocalizaBdd.Domain.ValueObjects.Cliente.Endereco(
                                             "31080170",
                                             "Rua Direita",
@@ -38,6 +39,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
                                             "Minas Gerais"),
                                         "12345678"
                                       );
+
         private readonly List<Cliente> _clientes;
 
         public ClienteControllerTest()
@@ -50,9 +52,8 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
         {
             //Arrange
             var guid = new Guid("d0feaa4e-f5aa-474a-9863-9d6b2964977e");
-            _cliente.AtualizarId(guid);
 
-            _clienteRepositorioMock.Setup(x => x.Obter(It.IsAny<Guid>())).Returns(_cliente);
+            _clienteRepositorioMock.Setup(x => x.Obter(guid)).Returns(_cliente);
 
             _clienteController = new ClienteController(_clienteApplicationMock.Object, _clienteRepositorioMock.Object);
 
@@ -69,9 +70,9 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
         public void Obter_Cliente_NaoEncontrado()
         {
             //Arrange
-            var guid = new Guid("d0feaa4e-f5aa-474a-9863-9d6b2964977e");
+            var guid = new Guid("270842ec-2b88-4e30-aca0-15fccdaeaf3d");
             
-            _clienteRepositorioMock.Setup(x => x.Obter(It.IsAny<Guid>())).Returns((Cliente)null);
+            _clienteRepositorioMock.Setup(x => x.Obter(guid)).Returns((Cliente)null);
 
             _clienteController = new ClienteController(_clienteApplicationMock.Object, _clienteRepositorioMock.Object);
 
@@ -119,12 +120,10 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
                 Senha = "12345678"
             };
 
-            Guid guid = new Guid("fdc4cc80-c637-45e3-93e4-38032bb24624");
-            Cliente cliente = new Cliente(guid, model.Cpf, model.Aniversario);
-
+            Guid guid = new Guid("a61e52c5-7c25-4fa8-a8f3-8d793d319199");
             
             _clienteApplicationMock.Setup(x => x.Cadastrar(It.IsAny<ClienteModel>()))
-                .Returns(cliente);
+                .Returns(_cliente2);
             
             _clienteRepositorioMock.Setup(x => x.Cadastrar(It.IsAny<Cliente>())).Verifiable();
 
@@ -136,7 +135,7 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
             //Assert
             resultado.Should().BeOfType(typeof(OkObjectResult));
             var conteudo = GetOkObject<Cliente>(resultado);
-            conteudo.Should().BeSameAs(cliente);
+            conteudo.Should().BeSameAs(_cliente2);
         }
 
         [Fact]

@@ -6,7 +6,7 @@ using Moq;
 using System;
 using Xunit;
 
-namespace DesafioLocalizaBdd.Tests.Unit.Application
+namespace DesafioLocalizaBdd.Tests.Unit.Applications
 {
     public class LoginApplicationTest
     {

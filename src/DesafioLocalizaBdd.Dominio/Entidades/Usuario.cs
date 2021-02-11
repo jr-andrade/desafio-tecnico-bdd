@@ -5,6 +5,7 @@ using System;
 
 namespace DesafioLocalizaBdd.Domain.Entidades
 {
+    //TODO: Usuário deve herdar de Entity
     /// <summary>
     /// Entidade de domínio que representa um Usuário do sistema
     /// </summary>
@@ -78,7 +79,7 @@ namespace DesafioLocalizaBdd.Domain.Entidades
         /// <summary>
         /// Id
         /// </summary>
-        public Guid Id { get; private set; }
+        public Guid Id { get; protected set; }
 
         /// <summary>
         /// Login
@@ -104,15 +105,6 @@ namespace DesafioLocalizaBdd.Domain.Entidades
         /// Perfil
         /// </summary>
         public string Perfil { get; private set; }
-
-        /// <summary>
-        /// Atualiza o Id do usuário
-        /// </summary>
-        /// <param name="id"></param>
-        public void AtualizarId(Guid id)
-        {
-            Id = id;
-        }
 
         /// <summary>
         /// Autentica o usuário

@@ -9,5 +9,11 @@ namespace DesafioLocalizaBdd.Tests.Unit.Controllers
             var okObjectResult = (OkObjectResult)result;
             return (T)okObjectResult.Value;
         }
+
+        protected T GetCreatedObject<T>(IActionResult result)
+        {
+            var createdResult = (CreatedResult)result;
+            return (T)createdResult.Value;
+        }
     }
 }

@@ -11,8 +11,8 @@ namespace DesafioLocalizaBdd.Application.Interfaces
         /// <summary>
         /// Realiza o cadastro do operador
         /// </summary>
-        /// <param name="operadorModel"></param>
+        /// <param name="model"></param>
         /// <returns>Objeto contendo o operador cadastrado</returns>
-        public Operador Cadastrar(OperadorModel operadorModel);
+        public Operador Cadastrar(OperadorModel model);
     }
 }
